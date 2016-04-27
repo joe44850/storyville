@@ -4,8 +4,11 @@ require_once(HLP."/pkg-default.php");
 
 class Home extends CI_Controller {
 	
-	private $is_mobile;
-	private $params;
+	private $_is_mobile;
+	private $_is_logged_in;
+	private $_params;
+	private $_Display;
+	private $_Login;
 	
 	public function __construct(){
 		parent::__construct();
@@ -13,24 +16,26 @@ class Home extends CI_Controller {
 	}
 	
 	public function index(){
-		$this->params['head_start'] = $this->Display->HeadStart();
-		$this->params['body_start'] = $this->Display->BodyStart();
-		$this->load->view("Home/home".$this->ext, $this->params);
+		$this->_params['head_start'] = $this->_Display->HeadStart();
+		$this->_params['body_start'] = $this->_Display->BodyStart();
+		if($this->_is_logged_in){ $this->_welcomeNonMember(); }
+		else{ $this->_welcomeMember();}
 	}
 	
-	private function _Init(){
-		$this->is_mobile = isMobile();
-		$this->Html = new Html();
-		if($this->is_mobile){
-			$this->ext = "_mbl";
-			$this->Display = new MBL\Display($this->Html);			
-		}
-		else{	
-			$this->ext = "_pc";
-			$this->Display = new PC\Display($this->Html);			
-		}
-		
-		
+	private function _welcomeNonMember(){
+		$this->_params['nav_bar'] = $this->_Display->NavBar(true);		
+		$this->load->view("Home/WelcomeNonMember".$this->_Display->ext, $this->_params);
+	}
+	
+	private function _welcomeMember(){
+		$this->_params['nav_bar'] = $this->_Display->NavBar(true);		
+		$this->load->view("Home/WelcomeMember".$this->_Display->ext, $this->_params);
+	}
+	
+	private function _Init(){		
+		$this->_Display = new Display(new Html());
+		$this->_Login = new Login();		
+		$this->_is_logged_in = $this->_Login->is_logged_in;
 	}
 	
 }
