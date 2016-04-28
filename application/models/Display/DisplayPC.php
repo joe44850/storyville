@@ -15,8 +15,9 @@
 		
 		public function HeadStart(){
 			$html = $this->_IHtml->GetDocType();
-			$html.= $this->_IHtml->LoadJavascript("_js/common, _js/lib, _js/_spajs");
+			$html.= $this->_IHtml->LoadJavascript("_js/common, _js/spajs, _js/lib", false);
 			$html.= $this->_IHtml->LoadCss("_css/pc");
+			$html.= $this->_IHtml->Favicon();
 			return $html;
 		}
 		
@@ -56,6 +57,7 @@
 					</div>
 				</div>
 			";
+			return $html;
 		}
 		
 	}

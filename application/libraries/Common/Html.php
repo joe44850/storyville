@@ -12,17 +12,18 @@
 	
 		public function __construct(){
 			$this->site = SITE;
-			$this->favicon = BASE."/_images/site/favicon.png";
+			$this->favicon = "/_images/site/favicon.png";
 			if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) $this->loggedin = true ;	
 			$this->is_mobile = isMobile();
 		}
 	
 		//loads every js file in a directory, send a directory that is relative to root, like _js/somejsdir
-		public function LoadJavascript($dir_string_array=""){
+		public function LoadJavascript($dir_string_array="", $do_sort=true){
 			$js = "";
 			try{	$dir_string_array = preg_replace("/\s/", "", $dir_string_array);}
 			catch(Exception $error){ echo "ERROR: $error";}			
 			$dirs = explode(",", $dir_string_array);
+			if($do_sort) { asort($dirs); }
 			foreach($dirs as $dir){
 				$root_dir = ROOT."/".$dir;
 				$files = Common::LoadFiles($root_dir, "js");
@@ -86,7 +87,13 @@
 					<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 					";
 			return $html;
-		}		
+		}
+
+		public function Favicon($icon=""){
+			$favicon = ($icon != "") ? $icon : $this->favicon;
+			$html ="\n\t<link rel='shortcut icon' type='image/png' href='".SITE."/".$this->favicon."' />";
+			return $html;
+		}
 		
 		public function BodyStart(){
 			$html = "
