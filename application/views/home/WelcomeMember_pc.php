@@ -4,4 +4,4 @@
 	echo $nav_bar;
 ?>
 
-Welcome!
+	

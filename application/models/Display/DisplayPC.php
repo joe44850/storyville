@@ -40,9 +40,9 @@
 		
 		private function _NavBarFullSize(){
 			$html = "
-				<div class='navbar-full-container'>
-					<div class='navbar-full'>
-					Navbar
+				<div id='navbar-full-container'>
+					<div id='navbar-full'>
+					
 					</div>
 				</div>
 			";
@@ -51,9 +51,9 @@
 		
 		private function _NavBarMin(){
 			$html = "
-				<div class='navbar-min-container'>
-					<div class='navbar-min'>
-					Navbar
+				<div id='navbar-min-container'>
+					<div id='navbar-min'>
+					
 					</div>
 				</div>
 			";

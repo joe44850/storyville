@@ -18,8 +18,8 @@ class Home extends CI_Controller {
 	public function index(){
 		$this->_params['head_start'] = $this->_Display->HeadStart();
 		$this->_params['body_start'] = $this->_Display->BodyStart();
-		if($this->_is_logged_in){ $this->_welcomeNonMember(); }
-		else{ $this->_welcomeMember();}
+		if($this->_is_logged_in){ $this->_welcomeMember(); }
+		else{ $this->_welcomeNonMember();}
 	}
 	
 	private function _welcomeNonMember(){
@@ -27,7 +27,7 @@ class Home extends CI_Controller {
 		$this->load->view("Home/WelcomeNonMember".$this->_Display->ext, $this->_params);
 	}
 	
-	private function _welcomeMember(){
+	private function _welcomeMember(){		
 		$this->_params['nav_bar'] = $this->_Display->NavBar(true);		
 		$this->load->view("Home/WelcomeMember".$this->_Display->ext, $this->_params);
 	}
@@ -35,7 +35,7 @@ class Home extends CI_Controller {
 	private function _Init(){		
 		$this->_Display = new Display(new Html());
 		$this->_Login = new Login();		
-		$this->_is_logged_in = $this->_Login->is_logged_in;
+		$this->_is_logged_in = $this->_Login->is_logged_in;		
 	}
 	
 }

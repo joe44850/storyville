@@ -2,7 +2,7 @@
 
 	class Login {
 		
-		private $is_logged_in;
+		private $is_logged_in = false;
 		
 		public function __get($name){
 			return $this->$name;

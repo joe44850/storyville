@@ -35,7 +35,20 @@ form input[type=text] {
 
 
 /*****************	20 - DIVS, CONTAINERS 		********/
+.container-wide{
+	width:100%;	
+}
 
+.container-wide-white{
+	width:100%;
+	background:#fff;
+}
+
+.container-center{
+	width:100%;
+	max-width:1000px;
+	margin:0 auto;
+}
 
 .div-420{
 	width:420px;
